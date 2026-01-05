@@ -36,8 +36,14 @@ export const useAuthStore = defineStore('auth', () => {
 
             // 2. Redirigir al usuario a AccountsApp
             window.location.href = response.data.url;
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error al iniciar OAuth:', error);
+            console.error('Error details:', {
+                message: error.message,
+                code: error.code,
+                config: error.config,
+                response: error.response?.data
+            });
             throw error;
         }
     }
