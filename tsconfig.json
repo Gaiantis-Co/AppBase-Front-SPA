@@ -1,4 +1,13 @@
 {
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ]
+  },
   "files": [],
   "references": [
     {
@@ -9,6 +18,9 @@
     },
     {
       "path": "./tsconfig.vitest.json"
+    },
+    {
+      "path": "./nightwatch/tsconfig.json"
     }
   ]
 }

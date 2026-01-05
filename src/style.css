@@ -1,0 +1,7 @@
+@import url('https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+    /* Explicitly override font-sans to use Figtree to match Blade template */
+    --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
