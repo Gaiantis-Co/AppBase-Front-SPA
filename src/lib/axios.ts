@@ -2,8 +2,7 @@ import axios from 'axios';
 import notify from './toast';
 
 const api = axios.create({
-    // @ts-ignore
-    baseURL: (import.meta as any).env.VITE_BACKEND_URL || 'http://localhost:8001',
+    baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:8001',
     withCredentials: true,
     headers: {
         'X-Requested-With': 'XMLHttpRequest',

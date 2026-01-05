@@ -8,11 +8,19 @@ interface User {
     email: string;
 }
 
+interface Company {
+    id: number;
+    nombre: string;
+    identificacion: string;
+    alias?: string;
+    logo?: string;
+}
+
 interface AccessMode {
     type: 'global_admin' | 'company';
     rol: string;
     empresa_id: number | null;
-    empresa?: any;
+    empresa?: Company;
 }
 
 export const useAuthStore = defineStore('auth', () => {
@@ -21,8 +29,8 @@ export const useAuthStore = defineStore('auth', () => {
     const sincronizerCode = ref<string | null>(localStorage.getItem('sincronizer_code'));
     const accessModes = ref<AccessMode[]>([]);
     const requiresCompany = ref<boolean | 'optional'>(true);
-    const selectedCompany = ref<any>(null);
-    const companies = ref<any[]>([]); // Compatibilidad con código existente
+    const selectedCompany = ref<Partial<Company> | null>(null);
+    const companies = ref<Company[]>([]); // Compatibilidad con código existente
 
     const isAuthenticated = computed(() => !!user.value && !!token.value);
 

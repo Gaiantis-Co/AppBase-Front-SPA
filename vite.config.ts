@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 import nightwatchPlugin from 'vite-plugin-nightwatch'
 import tailwindcss from '@tailwindcss/vite'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -14,6 +15,10 @@ export default defineConfig({
     vueDevTools(),
     nightwatchPlugin(),
     tailwindcss(),
+    visualizer({
+      open: false,
+      filename: 'bundle-analysis.html',
+    }) as any,
   ],
   build: {
     rollupOptions: {
