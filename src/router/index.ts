@@ -10,34 +10,34 @@ const Dashboard = () => import('../views/Dashboard.vue')
 const SelectContext = () => import('../views/auth/SelectContext.vue')
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('#'),
   routes: [
     {
       path: '/',
-      redirect: '/dashboard'
+      redirect: '/dashboard',
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
     },
     {
       path: '/auth/callback',
       name: 'oauth-callback',
-      component: OAuthCallback
+      component: OAuthCallback,
     },
     {
       path: '/select-context',
       name: 'select-context',
       component: SelectContext,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true },
     },
     {
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
-      meta: { requiresAuth: true }
-    }
+      meta: { requiresAuth: true },
+    },
   ],
 })
 
@@ -67,7 +67,11 @@ router.beforeEach(async (to, from, next) => {
 
     // Check for Context Selection
     // Only redirect if we have multiple contexts and none selected
-    if (contextStore.availableContexts.length > 1 && !contextStore.hasContext && to.name !== 'select-context') {
+    if (
+      contextStore.availableContexts.length > 1 &&
+      !contextStore.hasContext &&
+      to.name !== 'select-context'
+    ) {
       return next({ name: 'select-context' })
     }
   }
