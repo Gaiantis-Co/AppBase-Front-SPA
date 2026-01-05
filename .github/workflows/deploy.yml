@@ -47,6 +47,10 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.install }}
 
       - name: Build Vue app
+        env:
+          VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
+          VITE_ACCOUNTS_APP_URL: ${{ vars.VITE_ACCOUNTS_APP_URL }}
+          VITE_SSO_REDIRECT_URL: ${{ vars.VITE_SSO_REDIRECT_URL }}
         run: ${{ steps.detect-package-manager.outputs.run }} build
 
       - name: Upload Pages artifact
