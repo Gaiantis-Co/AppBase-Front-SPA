@@ -16,8 +16,9 @@
           return v.indexOf('p=/') === 0
         })[0].slice(3);
         if (decoded !== l.pathname) {
+          var basePath = l.pathname.replace(/\/$/, '');
           window.history.replaceState(null, null,
-            l.pathname.slice(0, l.pathname.length - (l.search.length + l.hash.length)) + decoded + (l.search.slice(1).split('&').filter(function (v) { return v.indexOf('p=/') !== 0 }).join('&') ? '?' + l.search.slice(1).split('&').filter(function (v) { return v.indexOf('p=/') !== 0 }).join('&') : '') + l.hash
+            basePath + decoded + (l.search.slice(1).split('&').filter(function (v) { return v.indexOf('p=/') !== 0 }).join('&') ? '?' + l.search.slice(1).split('&').filter(function (v) { return v.indexOf('p=/') !== 0 }).join('&') : '') + l.hash
           );
         }
       }
