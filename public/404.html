@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Gaiantis SPA Redirection</title>
-    <script type="text/javascript">
-      // GitHub Pages SPA trick
-      var pathSegmentsToKeep = 1; // Number of segments in the base path (/AppBase-Front-SPA)
 
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
-    </script>
-  </head>
-  <body>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Gaiantis SPA Redirection</title>
+  <script type="text/javascript">
+    // GitHub Pages SPA trick (v2)
+    var pathSegmentsToKeep = 1; // /AppBase-Front-SPA
+
+    var l = window.location;
+    var repoPath = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/');
+    var redirectPath = l.pathname.split('/').slice(1 + pathSegmentsToKeep).join('/').replace(/&/g, '~and~');
+
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      repoPath + '/?p=/' + redirectPath +
+      (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+      l.hash
+    );
+  </script>
+</head>
+
+<body>
+</body>
+
 </html>
