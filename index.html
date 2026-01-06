@@ -1,40 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net; font-src 'self' https://fonts.gstatic.com https://fonts.bunny.net; img-src 'self' data: https:; connect-src 'self' https: http: http://appbase-back.test https://accounts-app.test;"
+    />
+    <title>Gaiantis SPA</title>
+    <!-- GitHub Pages SPA redirection handler (v2 - robust pathing) -->
+    <script type="text/javascript">
+      ;(function (l) {
+        if (l.search[1] === 'p') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&')
+            })
+            .filter(function (v) {
+              return v.indexOf('p=/') === 0
+            })[0]
+            .slice(3)
+          if (decoded !== l.pathname) {
+            var basePath = l.pathname.replace(/\/$/, '')
+            var otherParams = l.search
+              .slice(1)
+              .split('&')
+              .filter(function (v) {
+                return v.indexOf('p=/') !== 0
+              })
+              .join('&')
 
-<head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.bunny.net; font-src 'self' https://fonts.gstatic.com https://fonts.bunny.net; img-src 'self' data: https:; connect-src 'self' https: http: https://appbase-back.test http://accounts-app.test;">
-  <title>Gaiantis SPA</title>
-  <!-- GitHub Pages SPA redirection handler (v2 - robust pathing) -->
-  <script type="text/javascript">
-    (function (l) {
-      if (l.search[1] === 'p') {
-        var decoded = l.search.slice(1).split('&').map(function (s) {
-          return s.replace(/~and~/g, '&')
-        }).filter(function (v) {
-          return v.indexOf('p=/') === 0
-        })[0].slice(3);
-        if (decoded !== l.pathname) {
-          var basePath = l.pathname.replace(/\/$/, '');
-          var otherParams = l.search.slice(1).split('&').filter(function (v) {
-            return v.indexOf('p=/') !== 0
-          }).join('&');
-
-          window.history.replaceState(null, null,
-            basePath + decoded + (otherParams ? '?' + otherParams : '') + l.hash
-          );
+            window.history.replaceState(
+              null,
+              null,
+              basePath + decoded + (otherParams ? '?' + otherParams : '') + l.hash,
+            )
+          }
         }
-      }
-    }(window.location))
-  </script>
-</head>
+      })(window.location)
+    </script>
+  </head>
 
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
