@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+    reviewers:
+      - "Gaiantis-Co/admin"  # Ajusta según tu equipo
+    assignees:
+      - "Gaiantis-Co/admin"  # Ajusta según tu equipo
+
+      
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

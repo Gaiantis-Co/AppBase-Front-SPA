@@ -1,0 +1,25 @@
+
+name: Semgrep (JS/TS)
+
+on:
+  pull_request:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Semgrep + Scan
+        run: |
+          pip install semgrep
+          # Semgrep CI: ejecuta reglas por defecto (registry) y emite SARIF
+          semgrep ci --sarif --output semgrep.sarif
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: semgrep.sarif
