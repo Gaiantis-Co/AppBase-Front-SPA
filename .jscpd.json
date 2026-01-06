@@ -1,0 +1,17 @@
+{
+  "threshold": 3,
+  "minTokens": 60,
+  "reporters": ["console"],
+  "format": ["js", "ts", "vue", "json", "yaml"],
+  "exclude": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    ".github/**",
+    "public/**",
+    "tests/**",
+    "e2e/**",
+    "nightwatch.conf.cjs",
+    "playwright.config.ts"
+  ]
+}

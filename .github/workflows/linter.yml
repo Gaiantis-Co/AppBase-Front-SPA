@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ "main" ]
   push:
-    branches: [ "develop", "feature/**" ]
+    branches: [ "main", "develop", "feature/**" ]
 
 jobs:
   lint:
@@ -19,9 +19,36 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
       - name: Run Super-Linter
         uses: super-linter/super-linter@v8
         env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
+          # Reportes por Checks en el PR
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # Usa ESLint + Prettier del proyecto. Desactiva Biome.
+          ENABLE_BIOME: false
+
+          # Activa linters relevantes para Vue/Vite
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_TYPESCRIPT_ES: true
+          VALIDATE_JSON: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
+          YAML_PRETTIER: true
+
+          # Desactiva lo que no aplica en tu repo
+          VALIDATE_CHECKOV: false
+
+          # JSCPD (duplicación): opcional. Si molesta, pon false.
+          VALIDATE_JSCPD: true
+          JSCPD_CONFIG_FILE: ".jscpd.json"
+
+          # Excluir rutas irrelevantes (build, dependencias, cobertura, GH Pages, etc.)
+          FILTER_REGEX_EXCLUDE: "(node_modules|dist|coverage|\\.github|public|bundle-analysis\\.html)"
+
+          # Rama base
+          DEFAULT_BRANCH: main
+
+          # Lint solo del diff, no todo el histórico
+          VALIDATE_ALL_CODEBASE: false
