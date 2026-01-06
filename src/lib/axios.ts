@@ -2,7 +2,7 @@ import axios from 'axios';
 import notify from './toast';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_BACKEND_URL || 'http://localhost:8001',
+    baseURL: 'http://appbase-back.test',
     withCredentials: true,
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
