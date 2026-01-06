@@ -20,6 +20,6 @@ jobs:
           # Semgrep CI: ejecuta reglas por defecto (registry) y emite SARIF
           semgrep ci --sarif --output semgrep.sarif
       - name: Upload SARIF
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: semgrep.sarif
