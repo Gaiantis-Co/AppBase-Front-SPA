@@ -51,6 +51,7 @@ jobs:
           VITE_BACKEND_URL: ${{ vars.VITE_BACKEND_URL }}
           VITE_ACCOUNTS_APP_URL: ${{ vars.VITE_ACCOUNTS_APP_URL }}
           VITE_SSO_REDIRECT_URL: ${{ vars.VITE_SSO_REDIRECT_URL }}
+          VITE_BASE_PATH: /AppBase-Front-SPA/
         run: ${{ steps.detect-package-manager.outputs.run }} build
 
       - name: Upload Pages artifact
