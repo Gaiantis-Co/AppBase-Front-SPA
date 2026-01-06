@@ -10,7 +10,7 @@ import type { Plugin } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.VITE_BASE_PATH || "/",
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [
     vue(),
     vueDevTools(),
@@ -25,15 +25,15 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor-ui': ['vue', 'vue-router', 'pinia', 'vue-toastification']
-        }
-      }
+          'vendor-ui': ['vue', 'vue-router', 'pinia', 'vue-toastification'],
+        },
+      },
     },
-    chunkSizeWarningLimit: 600
+    chunkSizeWarningLimit: 600,
   },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 })
