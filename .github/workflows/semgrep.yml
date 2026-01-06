@@ -17,8 +17,8 @@ jobs:
       - name: Install Semgrep + Scan
         run: |
           pip install semgrep
-          # Semgrep CI: ejecuta reglas por defecto (registry) y emite SARIF
-          semgrep ci --sarif --output semgrep.sarif
+          # Semgrep Scan: ejecuta reglas por defecto (registry) y emite SARIF
+          semgrep scan --sarif --output semgrep.sarif
       - name: Upload SARIF
         uses: github/codeql-action/upload-sarif@v4
         with:
