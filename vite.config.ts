@@ -6,10 +6,11 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import nightwatchPlugin from 'vite-plugin-nightwatch'
 import tailwindcss from '@tailwindcss/vite'
 import { visualizer } from 'rollup-plugin-visualizer'
+import type { Plugin } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/AppBase-Front-SPA",
+  base: process.env.VITE_BASE_PATH || "/",
   plugins: [
     vue(),
     vueDevTools(),
@@ -18,7 +19,7 @@ export default defineConfig({
     visualizer({
       open: false,
       filename: 'bundle-analysis.html',
-    }) as any,
+    }) as Plugin,
   ],
   build: {
     rollupOptions: {

@@ -34,7 +34,7 @@ function switchContext(companyId: number) {
         <!-- Dropdown Menu -->
         <div
             v-show="isOpen"
-            @click.away="isOpen = false"
+            @click="isOpen = false"
             class="absolute z-50 mt-2 w-64 rounded-md shadow-lg origin-top-right right-0"
         >
             <div class="rounded-md ring-1 ring-black ring-opacity-5 py-1 bg-white dark:bg-gray-700">

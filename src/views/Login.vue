@@ -2,6 +2,10 @@
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/auth';
 
+defineOptions({
+  name: 'LoginView'
+})
+
 const auth = useAuthStore();
 const error = ref<string | null>(null);
 const isLoading = ref(false);
@@ -11,8 +15,9 @@ const handleLogin = async () => {
     error.value = null;
     try {
         await auth.login(); // Redirige a AccountsApp para OAuth
-    } catch (err: any) {
-        error.value = err.response?.data?.message || 'Error al iniciar sesión';
+    } catch (err: unknown) {
+        const errorObj = err as { response?: { data?: { message?: string } } };
+        error.value = errorObj.response?.data?.message || 'Error al iniciar sesión';
         console.error('Error al iniciar sesión:', err);
         isLoading.value = false;
     }
@@ -30,7 +35,7 @@ const handleLogin = async () => {
             </p>
 
             <div v-if="error" class="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-r-lg text-sm flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                 </svg>
                 {{ error }}

@@ -61,7 +61,8 @@ export const useContextStore = defineStore('context', () => {
         if (stored) {
             try {
                 currentContext.value = JSON.parse(stored);
-            } catch (e) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            } catch (_) {
                 localStorage.removeItem('current_context');
             }
         }

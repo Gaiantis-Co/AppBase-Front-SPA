@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import AppLayout from '../layouts/AppLayout.vue';
 
-const accountsAppUrl = (import.meta as any).env.VITE_ACCOUNTS_APP_URL || '#';
+defineOptions({
+  name: 'DashboardView'
+})
+
+const accountsAppUrl = import.meta.env.VITE_ACCOUNTS_APP_URL || '#';
 </script>
 
 <template>

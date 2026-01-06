@@ -25,10 +25,10 @@ onMounted(async () => {
         const response = await auth.handleOAuthCallback(code, state);
         
         // Extract companies from access_modes
-        const companyModes = response.access_modes?.filter((mode: any) => mode.type === 'company') || [];
+        const companyModes = response.access_modes?.filter((mode: { type: string }) => mode.type === 'company') || [];
         
         // Map to Company interface
-        const companies = companyModes.map((mode: any) => ({
+        const companies = companyModes.map((mode: { empresa: unknown; rol: string; empresa_id: number }) => ({
             ...mode.empresa,
             rol_empresa: mode.rol,
             id: mode.empresa_id // Ensure ID is top level
@@ -59,8 +59,9 @@ onMounted(async () => {
             router.push('/dashboard');
         }
 
-    } catch (err: any) {
-        error.value = err.response?.data?.message || 'Error al procesar autenticación';
+    } catch (err: unknown) {
+        const errorObj = err as { response?: { data?: { message?: string } } };
+        error.value = errorObj.response?.data?.message || 'Error al procesar autenticación';
         processing.value = false;
         console.error('OAuth callback error:', err);
     }

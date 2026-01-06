@@ -36,7 +36,7 @@ describe('Auth Store', () => {
         auth.token = 'test-token';
         auth.user = { id: 1, name: 'Test', email: 'test@example.com' };
 
-        (api.post as any).mockResolvedValueOnce({});
+        api.post.mockResolvedValueOnce({});
 
         await auth.logout();
 
@@ -59,7 +59,7 @@ describe('Auth Store', () => {
             }
         };
 
-        (api.get as any).mockResolvedValueOnce(mockResponse);
+        api.get.mockResolvedValueOnce(mockResponse);
 
         await auth.handleOAuthCallback('test-code');
 
