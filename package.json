@@ -57,7 +57,7 @@
     "vite": "^7.3.0",
     "vite-plugin-nightwatch": "^0.4.6",
     "vite-plugin-vue-devtools": "^8.0.5",
-    "vitest": "^4.0.16",
+    "vitest": "^4.0.17",
     "vue-tsc": "^3.2.2"
   }
 }
