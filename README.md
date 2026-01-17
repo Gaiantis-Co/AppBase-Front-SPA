@@ -6,6 +6,7 @@
 > **Módulos Migrados:** Auth/SSO, Context Selection, Athletes, Academies, Coaches, Enrollments, Training Plans.
 >
 > Ver el reporte detallado: [Migration Audit](AUDIT_MIGRATION.md)
+> Ver guía de despliegue: [Hosting Guide](HOSTING_GUIDE.md)
 
 # AppBase-Front-Vue-SPA2
 

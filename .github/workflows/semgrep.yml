@@ -13,7 +13,7 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
       - name: Install Semgrep + Scan
         run: |
           pip install semgrep
